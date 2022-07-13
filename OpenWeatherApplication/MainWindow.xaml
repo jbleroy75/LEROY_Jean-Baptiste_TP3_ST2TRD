@@ -1,0 +1,72 @@
+﻿<controls:MetroWindow x:Class="OpenWeatherApplication.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:OpenWeatherApplication"
+                      xmlns:utils="clr-namespace:OpenWeatherApplication.Utils"
+                      xmlns:data="clr-namespace:OpenWeatherApplication.SampleData"
+                      xmlns:ctrls="clr-namespace:OpenWeatherApplication.Controls"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      mc:Ignorable="d"
+                      Width="555" Height="680" 
+                      Background="{StaticResource PrimaryMidBrush}" 
+                      ResizeMode="NoResize" TitleCaps="False"
+                      IconTemplate="{DynamicResource IconTemplate}"
+                      d:DataContext="{d:DesignInstance Type=data:SampleWeatherViewModel, IsDesignTimeCreatable=True}"
+                      DataContext="{Binding WeatherVM, Source={StaticResource ViewModelLocator}}">
+
+    <Grid FocusManager.FocusedElement="{Binding ElementName=LocationTextBox}" Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Location-->
+        <Border Grid.Row="0" Background="{StaticResource PrimaryDarkBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="LocationTextBox" SelectionBrush="{StaticResource PrimaryLightBrush}" Margin="0"
+                     VerticalAlignment="Top" controls:TextBoxHelper.Watermark="Type City Name &amp; press Enter"
+                     VerticalContentAlignment="Center" Height="35"
+                     Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Width="250"
+                     HorizontalAlignment="Left">
+                    <i:Interaction.Behaviors>
+                        <utils:SelectAllTextBehavior/>
+                    </i:Interaction.Behaviors>
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding GetWeatherCommand}" Key="Enter"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button Grid.Column="1" Command="{Binding SaveDataCommand}" Background="Maroon" Content="Save Data" Foreground="White" FontSize="16"/>
+                <Button Grid.Column="2" Command="{Binding LoadDataCommand}" Background="OrangeRed" Content="Load Saved Data" Foreground="White" FontSize="15"/>
+            </Grid>
+
+        </Border>
+
+        <ctrls:CurrentWeatherControl Grid.Row="1"/>
+
+        <!-- Forecast -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible">
+            <Border  Background="{StaticResource PrimaryDarkBrush}">
+                <ItemsControl Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                          ItemTemplate="{DynamicResource ForecastDataTemplate}"
+                          ItemsSource="{Binding Forecast}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
+        </ScrollViewer>
+
+
+
+    </Grid>
+</controls:MetroWindow>    

@@ -1,0 +1,31 @@
+﻿<Properties>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="OpenWeatherApplication/App.xaml">
+    <Files>
+      <File FileName="OpenWeatherApplication/App.xaml" Line="7" Column="43" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="OpenWeatherApplication" expanded="True" selected="True">
+            <Node name="OpenWeatherApplication" expanded="True">
+              <Node name="Commands" expanded="True" />
+              <Node name="Controls" expanded="True" />
+              <Node name="Properties" expanded="True">
+                <Node name="Settings.settings" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
